@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +9,11 @@ namespace WebApplication4.Model
     public class Employee
     {
         public int Id { get; set; }
+        [Required(ErrorMessage ="Name should not be empty")]
         public string Name { get; set; }
+        [EmailAddress]
+        [Required]
+        [Display(Name ="Personal Email")]
         public string Email { get; set; }
         public string Department { get; set; }
     }
@@ -17,6 +22,7 @@ namespace WebApplication4.Model
     {
         Employee GetEmployee(int id);
         List<Employee> GetAllEmployees();
+        Employee Add(Employee emp);
     }
 
 
@@ -33,6 +39,13 @@ namespace WebApplication4.Model
                 new Employee() { Id = 2, Name = "John", Department = "IT", Email = "john@pragimtech.com" },
                 new Employee() { Id = 3, Name = "Sam", Department = "IT", Email = "sam@pragimtech.com" },
             };
+        }
+
+        public Employee Add(Employee emp)
+        {
+            emp.Id = _employeeList.Max(x => x.Id) + 1;
+            _employeeList.Add(emp);
+            return emp;
         }
 
         public List<Employee> GetAllEmployees()

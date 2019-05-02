@@ -11,6 +11,6 @@ namespace WebApplication4.ViewModels
         public Employee employee { get; set; }
         public string PageTitle { get; set; }
         public string Heading { get; set; }
-
+       
     }
 }

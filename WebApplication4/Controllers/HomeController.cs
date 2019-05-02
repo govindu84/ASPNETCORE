@@ -21,19 +21,38 @@ namespace WebApplication4.Controllers
             List<Employee> model = _employeeRepo.GetAllEmployees();
             return View(model);
         }
-
-        public IActionResult List()
+        public IActionResult Details()
         {
+            List<Employee> model = _employeeRepo.GetAllEmployees();
+            return View("Index",model);
+        }
+        public IActionResult GetEmployee(int id)
+        {
+           
             HomeListViewModel objHLVM = new HomeListViewModel()
             {
-                employee = _employeeRepo.GetEmployee(1),
+                employee = _employeeRepo.GetEmployee(id),
                 PageTitle = "This is First View",
                 Heading = "Welcome to Comp world !"
             };
-            return View(objHLVM);
+            return View("List",objHLVM);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                Employee emp = _employeeRepo.Add(employee);
+                //return RedirectToAction("GetEmployee", new { id = emp.Id });
+            }
+            return View();
+        }
 
     }
 }

@@ -4,7 +4,7 @@
 
     <environment include="Development">
         <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
-        <script src="~/lib/jquery/jquery.js"></script>     
+        <script src="~/lib/jquery/jquery.js"></script>
         <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
     </environment>
     <environment exclude="Development">
@@ -23,8 +23,8 @@
     <div class="container">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             @*<a class="navbar-brand" asp-controller="home" asp-action="index">
-                <img src="~/images/employees.png" width="30" height="30">
-            </a>*@
+                    <img src="~/images/employees.png" width="30" height="30">
+                </a>*@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,19 +34,24 @@
                         <a class="nav-link" asp-controller="home" asp-action="index">List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="home" asp-action="List">Create</a>
+                        <a class="nav-link" asp-controller="home" asp-action="Create">Create</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="home" asp-action="Details">Details</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
-    <div>
-        @RenderBody()
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            @RenderBody()
+        </div>
     </div>
 
     @if (IsSectionDefined("Scripts"))
     {
-    @RenderSection("Scripts", required: false)
+        @RenderSection("Scripts", required: false)
     }
 
 </body>
