@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication4.Model;
+using ASPNETCore.Model;
 
-namespace WebApplication4.ViewModels
+namespace ASPNETCore.ViewModels
 {
     public class HomeListViewModel
     {

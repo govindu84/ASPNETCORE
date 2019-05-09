@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebApplication4": {
+    "ASPNETCore": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

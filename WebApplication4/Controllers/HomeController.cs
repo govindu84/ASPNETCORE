@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication4.Model;
-using WebApplication4.ViewModels;
-namespace WebApplication4.Controllers
+using ASPNETCore.Model;
+using ASPNETCore.ViewModels;
+namespace ASPNETCore.Controllers
 {
     public class HomeController : Controller
     {
@@ -18,12 +18,12 @@ namespace WebApplication4.Controllers
 
         public IActionResult Index()
         {
-            List<Employee> model = _employeeRepo.GetAllEmployees();
+            IEnumerable<Employee> model = _employeeRepo.GetAllEmployees();
             return View(model);
         }
         public IActionResult Details()
         {
-            List<Employee> model = _employeeRepo.GetAllEmployees();
+            IEnumerable<Employee> model = _employeeRepo.GetAllEmployees();
             return View("Index",model);
         }
         public IActionResult GetEmployee(int id)

@@ -1,62 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication4.Model
+namespace ASPNETCore.Model
 {
     public class Employee
     {
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required(ErrorMessage ="Name should not be empty")]
+        [Column(TypeName = "nvarchar(250)")]
+        [Required(ErrorMessage = "This field is required.")]
+        [DisplayName("Full Name")]
         public string Name { get; set; }
+        [Column(TypeName = "varchar(10)")]
+        [DisplayName("Emp. Code")]
+        public string EmpCode { get; set; }
         [EmailAddress]
         [Required]
-        [Display(Name ="Personal Email")]
+        [Display(Name = "Personal Email")]
+        [Column(TypeName = "varchar(1000)")]
         public string Email { get; set; }
-        public string Department { get; set; }
-    }
-
-    public interface IEmployeeRepository
-    {
-        Employee GetEmployee(int id);
-        List<Employee> GetAllEmployees();
-        Employee Add(Employee emp);
-    }
-
-
-    public class MockEmployeeRepository : IEmployeeRepository
-    {
-
-        private List<Employee> _employeeList;
-
-        public MockEmployeeRepository()
-        {
-            _employeeList = new List<Employee>()
-            {
-                new Employee() { Id = 1, Name = "Mary", Department = "HR", Email = "mary@pragimtech.com" },
-                new Employee() { Id = 2, Name = "John", Department = "IT", Email = "john@pragimtech.com" },
-                new Employee() { Id = 3, Name = "Sam", Department = "IT", Email = "sam@pragimtech.com" },
-            };
-        }
-
-        public Employee Add(Employee emp)
-        {
-            emp.Id = _employeeList.Max(x => x.Id) + 1;
-            _employeeList.Add(emp);
-            return emp;
-        }
-
-        public List<Employee> GetAllEmployees()
-        {
-            return _employeeList;
-        }
-
-        public Employee GetEmployee(int id)
-        {
-           return _employeeList.FirstOrDefault(x => x.Id == id);
-        }
+        [Column(TypeName = "varchar(100)")]
+        public string Position { get; set; }
+       
+       
     }
 
 }
